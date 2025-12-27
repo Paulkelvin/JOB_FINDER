@@ -16,14 +16,16 @@ logger = logging.getLogger(__name__)
 class ATSFetcher:
     """Fetches jobs from Greenhouse and Lever APIs"""
     
-    def __init__(self, company_slugs: List[str]):
+    def __init__(self, greenhouse_slugs: List[str] = None, lever_slugs: List[str] = None):
         """
         Initialize ATS fetcher
         
         Args:
-            company_slugs: List of company slugs to query
+            greenhouse_slugs: List of Greenhouse company slugs
+            lever_slugs: List of Lever company slugs
         """
-        self.company_slugs = company_slugs
+        self.greenhouse_slugs = greenhouse_slugs or []
+        self.lever_slugs = lever_slugs or []
         self.ua = UserAgent()
         self.session = requests.Session()
         
@@ -138,24 +140,24 @@ class ATSFetcher:
     def fetch_all_jobs(self) -> List[Dict]:
         """
         Fetch jobs from all configured companies
+        Optimized: Only queries the correct platform for each company
         
         Returns:
             Combined list of all jobs
         """
         all_jobs = []
         
-        for slug in self.company_slugs:
-            # Try Greenhouse first
+        # Fetch from Greenhouse companies
+        for slug in self.greenhouse_slugs:
             greenhouse_jobs = self.fetch_greenhouse_jobs(slug)
             all_jobs.extend(greenhouse_jobs)
-            
-            self._random_sleep()
-            
-            # If Greenhouse returns nothing, try Lever
-            if not greenhouse_jobs:
-                lever_jobs = self.fetch_lever_jobs(slug)
-                all_jobs.extend(lever_jobs)
-                self._random_sleep()
+            self._random_sleep(5, 15)  # Reduced from 10-30 to 5-15 seconds
+        
+        # Fetch from Lever companies
+        for slug in self.lever_slugs:
+            lever_jobs = self.fetch_lever_jobs(slug)
+            all_jobs.extend(lever_jobs)
+            self._random_sleep(5, 15)  # Reduced from 10-30 to 5-15 seconds
         
         logger.info(f"Total jobs fetched from ATS: {len(all_jobs)}")
         return all_jobs

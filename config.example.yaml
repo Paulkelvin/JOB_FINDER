@@ -55,27 +55,33 @@ serper:
     - 'site:news.ycombinator.com "GIS" OR "Geospatial" intitle:"Who is Hiring"'
 
 # ATS (Applicant Tracking System) Configuration
-# ONLY add companies that use Greenhouse or Lever
-# Companies using Workday (Trimble, Hexagon, AECOM, etc.) are found via Google Search below
+# Companies organized by platform to avoid 404 errors and speed up scanning
+
 ats:
-  company_slugs:
-    # ✅ VERIFIED WORKING SLUGS (Greenhouse) - Gemini Approved
-    - "esri"              # Esri (GIS software giant)
-    - "planetlabs"        # Planet - Satellite imagery (huge GIS team)
-    - "mapbox"            # Mapbox - Mapping platform
-    - "cartodb"           # CARTO - Cloud-native GIS platform
+  # Greenhouse Companies (use boards-api.greenhouse.io)
+  greenhouse_slugs:
+    - "esri"              # Esri - GIS software giant
+    - "planetlabs"        # Planet - Satellite imagery
+    - "onxmaps"           # onX Maps - Outdoor navigation
+    - "ardentmc"          # Ardent MC - Federal GIS consulting
+    - "apexcompanies"     # Apex Companies - Environmental & GIS
     - "geotab"            # Geotab - Fleet/Telematics
-    - "foursquare"        # Foursquare - Location intelligence/data
-    - "onxmaps"           # onX Maps - Outdoor navigation & mapping
-    - "ardentmc"          # Ardent MC - Federal GIS & Geospatial consulting
-    - "apexcompanies"     # Apex Companies - Environmental & GIS services
-    - "dewberry"          # Dewberry - Massive mapping & engineering firm
-    - "nearmap"           # Nearmap - High-res aerial imagery
-    - "blastpoint"        # BlastPoint - Geospatial data analytics startup
-    - "regrowagriculture" # Regrow Ag - Digital twin / Ag-GIS
+    - "blastpoint"        # BlastPoint - Geospatial analytics
     - "aurorasolar"       # Aurora Solar - Solar GIS
+    - "dewberry"          # Dewberry - Mapping & engineering
     - "langan"            # Langan - Civil engineering
     - "mbakerintl"        # Michael Baker International
+  
+  # Lever Companies (use api.lever.co)
+  lever_slugs:
+    - "mapbox"            # Mapbox - Mapping platform
+    - "carto"             # CARTO - Cloud-native GIS
+    - "foursquare"        # Foursquare - Location intelligence
+    - "nearmap"           # Nearmap - Aerial imagery
+    - "regrowagriculture" # Regrow Ag - Agricultural GIS
+  
+  # DEPRECATED: Old single list (keeping for reference)
+  # company_slugs: []
     
     # Engineering/Infrastructure firms (often have GIS roles)
     # Note: These may use Workday instead - check their careers page

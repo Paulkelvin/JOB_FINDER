@@ -77,16 +77,26 @@ class GeoJobSentinel:
     
     def fetch_ats_jobs(self) -> List[Dict]:
         """Fetch jobs from ATS platforms (Greenhouse/Lever)"""
-        company_slugs = self.config.get('ats', {}).get('company_slugs', [])
+        greenhouse_slugs = self.config.get('ats', {}).get('greenhouse_slugs', [])
+        lever_slugs = self.config.get('ats', {}).get('lever_slugs', [])
         
-        if not company_slugs:
+        # Backward compatibility: check old format
+        if not greenhouse_slugs and not lever_slugs:
+            old_slugs = self.config.get('ats', {}).get('company_slugs', [])
+            if old_slugs:
+                logger.warning("Using deprecated 'company_slugs' format. Please update to 'greenhouse_slugs' and 'lever_slugs'")
+                greenhouse_slugs = old_slugs
+        
+        total_companies = len(greenhouse_slugs) + len(lever_slugs)
+        
+        if total_companies == 0:
             logger.warning("No company slugs configured for ATS fetching")
             return []
         
-        logger.info(f"Fetching jobs from {len(company_slugs)} companies via ATS")
+        logger.info(f"Fetching jobs from {len(greenhouse_slugs)} Greenhouse + {len(lever_slugs)} Lever companies")
         
         try:
-            fetcher = ATSFetcher(company_slugs)
+            fetcher = ATSFetcher(greenhouse_slugs=greenhouse_slugs, lever_slugs=lever_slugs)
             jobs = fetcher.fetch_all_jobs()
             return jobs
         except Exception as e:

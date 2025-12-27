@@ -53,23 +53,24 @@ jobs:
               - 'site:reddit.com/r/gis "hiring" OR "job opening" after:2025-01-01'
           
           ats:
-            company_slugs:
+            greenhouse_slugs:
               - "esri"
               - "planetlabs"
-              - "mapbox"
-              - "cartodb"
-              - "geotab"
-              - "foursquare"
               - "onxmaps"
               - "ardentmc"
               - "apexcompanies"
-              - "dewberry"
-              - "nearmap"
+              - "geotab"
               - "blastpoint"
-              - "regrowagriculture"
               - "aurorasolar"
+              - "dewberry"
               - "langan"
               - "mbakerintl"
+            lever_slugs:
+              - "mapbox"
+              - "carto"
+              - "foursquare"
+              - "nearmap"
+              - "regrowagriculture"
           
           discovery:
             enabled: true

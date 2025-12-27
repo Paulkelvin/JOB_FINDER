@@ -72,16 +72,16 @@ class SerperFetcher:
         try:
             logger.info(f"Searching Google via Serper: {query}")
             
+            # FIXED: Correct payload format for Serper API
             payload = {
                 "q": query,
-                "num": 100,
-                "gl": "us",
-                "hl": "en"
+                "num": 100
             }
             
+            # CRITICAL: Use json=payload (not data=) for automatic JSON serialization
             response = requests.post(
                 self.base_url,
-                json=payload,
+                json=payload,  # This automatically sets Content-Type and serializes
                 headers=self._get_headers(),
                 timeout=30
             )
