@@ -73,10 +73,10 @@ class SerperFetcher:
             logger.info(f"Searching Google via Serper: {query}")
             
             payload = {
-                'q': query,
-                'num': 100,  # Maximum results
-                'gl': 'us',   # Geographic location
-                'hl': 'en'    # Language
+                "q": query,
+                "num": 100,
+                "gl": "us",
+                "hl": "en"
             }
             
             response = requests.post(

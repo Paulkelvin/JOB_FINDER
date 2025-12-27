@@ -23,23 +23,25 @@ serper:
   custom_dorks:
     - 'site:myworkdayjobs.com "GIS Specialist" OR "GIS Analyst" -senior -lead after:2025-01-01'
     - 'site:myworkdayjobs.com "Geospatial Analyst" -senior -manager after:2025-01-01'
-    - 'site:greenhouse.io "GIS" OR "Geospatial" -senior -lead'
+    - 'site:trimble.wd1.myworkdayjobs.com "GIS" -senior -lead'
+    - 'site:hexagon.wd5.myworkdayjobs.com "GIS" OR "Geospatial" -senior'
+    - 'site:precisely.wd1.myworkdayjobs.com "GIS" -senior'
 
 # ATS (Applicant Tracking System) Configuration
-# Add company slugs for Greenhouse/Lever job boards
+# ONLY add companies that use Greenhouse or Lever
+# Companies using Workday (Trimble, Hexagon, AECOM, etc.) are found via Google Search below
 ats:
   company_slugs:
-    # Example companies (replace with your targets)
-    - "esri"              # Esri (GIS software)
-    - "planet"            # Planet Labs
-    - "mapbox"            # Mapbox
-    - "carto"             # CARTO
-    - "nearmap"           # Nearmap
-    - "geotab"            # Geotab
-    - "precislyinc"       # Precisely
-    - "trimble"           # Trimble
-    - "hexagon"           # Hexagon Geospatial
-    - "orbital-insight"   # Orbital Insight
+    # ✅ VERIFIED WORKING SLUGS (Greenhouse)
+    - "esri"              # Esri (GIS software) - VERIFIED
+    - "planetlabs"        # Planet Labs - CORRECTED from "planet"
+    - "mapbox"            # Mapbox - VERIFIED
+    - "cartodb"           # CARTO - CORRECTED from "carto"
+    - "geotab"            # Geotab - VERIFIED
+    - "aurorasolar"       # Aurora Solar
+    - "dewberry"          # Dewberry (Environmental/FEMA)
+    - "langan"            # Langan Engineering
+    - "mbakerintl"        # Michael Baker International
     
     # Engineering/Infrastructure firms (often have GIS roles)
     # Note: These may use Workday instead - check their careers page

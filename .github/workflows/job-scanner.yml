@@ -41,19 +41,21 @@ jobs:
             custom_dorks:
               - 'site:myworkdayjobs.com "GIS Specialist" OR "GIS Analyst" -senior -lead after:2025-01-01'
               - 'site:myworkdayjobs.com "Geospatial Analyst" -senior -manager after:2025-01-01'
+              - 'site:trimble.wd1.myworkdayjobs.com "GIS" -senior -lead'
+              - 'site:hexagon.wd5.myworkdayjobs.com "GIS" OR "Geospatial" -senior'
+              - 'site:precisely.wd1.myworkdayjobs.com "GIS" -senior'
           
           ats:
             company_slugs:
               - "esri"
-              - "planet"
+              - "planetlabs"
               - "mapbox"
-              - "carto"
-              - "nearmap"
+              - "cartodb"
               - "geotab"
-              - "precislyinc"
-              - "trimble"
-              - "hexagon"
-              - "orbital-insight"
+              - "aurorasolar"
+              - "dewberry"
+              - "langan"
+              - "mbakerintl"
           
           discovery:
             enabled: true
