@@ -51,15 +51,9 @@ class JobFilter:
         'surveyor',
         'field crew',
         'field data collector',
-        'field services',
-        # Temporary/intern roles
-        'intern',
-        'internship',
-        'co-op',
-        'temporary',
-        'temp ',
-        'contract',
-        'freelance'
+        'field services'
+        # REMOVED: intern, internship, co-op, temporary, contract, freelance
+        # User wants contract/freelance opportunities!
     ]
     
     def __init__(self, custom_required: List[str] = None, custom_negative: List[str] = None):
