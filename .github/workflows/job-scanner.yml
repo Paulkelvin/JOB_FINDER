@@ -44,6 +44,7 @@ jobs:
               - 'site:trimble.wd1.myworkdayjobs.com "GIS" -senior -lead'
               - 'site:hexagon.wd5.myworkdayjobs.com "GIS" OR "Geospatial" -senior'
               - 'site:precisely.wd1.myworkdayjobs.com "GIS" -senior'
+              - 'site:job-boards.greenhouse.io "GIS Specialist" after:2025-01-01'
           
           ats:
             company_slugs:
@@ -52,8 +53,15 @@ jobs:
               - "mapbox"
               - "cartodb"
               - "geotab"
-              - "aurorasolar"
+              - "foursquare"
+              - "onxmaps"
+              - "ardentmc"
+              - "apexcompanies"
               - "dewberry"
+              - "nearmap"
+              - "blastpoint"
+              - "regrowagriculture"
+              - "aurorasolar"
               - "langan"
               - "mbakerintl"
           

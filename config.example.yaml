@@ -21,26 +21,37 @@ serper:
   
   # Custom Google dorks (optional)
   custom_dorks:
+    # Workday broad searches
     - 'site:myworkdayjobs.com "GIS Specialist" OR "GIS Analyst" -senior -lead after:2025-01-01'
     - 'site:myworkdayjobs.com "Geospatial Analyst" -senior -manager after:2025-01-01'
+    # Company-specific Workday searches
     - 'site:trimble.wd1.myworkdayjobs.com "GIS" -senior -lead'
     - 'site:hexagon.wd5.myworkdayjobs.com "GIS" OR "Geospatial" -senior'
     - 'site:precisely.wd1.myworkdayjobs.com "GIS" -senior'
+    # Discovery dork - finds NEW companies on Greenhouse
+    - 'site:job-boards.greenhouse.io "GIS Specialist" after:2025-01-01'
 
 # ATS (Applicant Tracking System) Configuration
 # ONLY add companies that use Greenhouse or Lever
 # Companies using Workday (Trimble, Hexagon, AECOM, etc.) are found via Google Search below
 ats:
   company_slugs:
-    # ✅ VERIFIED WORKING SLUGS (Greenhouse)
-    - "esri"              # Esri (GIS software) - VERIFIED
-    - "planetlabs"        # Planet Labs - CORRECTED from "planet"
-    - "mapbox"            # Mapbox - VERIFIED
-    - "cartodb"           # CARTO - CORRECTED from "carto"
-    - "geotab"            # Geotab - VERIFIED
-    - "aurorasolar"       # Aurora Solar
-    - "dewberry"          # Dewberry (Environmental/FEMA)
-    - "langan"            # Langan Engineering
+    # ✅ VERIFIED WORKING SLUGS (Greenhouse) - Gemini Approved
+    - "esri"              # Esri (GIS software giant)
+    - "planetlabs"        # Planet - Satellite imagery (huge GIS team)
+    - "mapbox"            # Mapbox - Mapping platform
+    - "cartodb"           # CARTO - Cloud-native GIS platform
+    - "geotab"            # Geotab - Fleet/Telematics
+    - "foursquare"        # Foursquare - Location intelligence/data
+    - "onxmaps"           # onX Maps - Outdoor navigation & mapping
+    - "ardentmc"          # Ardent MC - Federal GIS & Geospatial consulting
+    - "apexcompanies"     # Apex Companies - Environmental & GIS services
+    - "dewberry"          # Dewberry - Massive mapping & engineering firm
+    - "nearmap"           # Nearmap - High-res aerial imagery
+    - "blastpoint"        # BlastPoint - Geospatial data analytics startup
+    - "regrowagriculture" # Regrow Ag - Digital twin / Ag-GIS
+    - "aurorasolar"       # Aurora Solar - Solar GIS
+    - "langan"            # Langan - Civil engineering
     - "mbakerintl"        # Michael Baker International
     
     # Engineering/Infrastructure firms (often have GIS roles)
