@@ -29,10 +29,10 @@ class SerperFetcher:
     
     def _get_headers(self) -> dict:
         """Generate headers for Serper API"""
+        # Don't use random user agents - Serper rejects some of them
         return {
             'X-API-KEY': self.api_key,
-            'Content-Type': 'application/json',
-            'User-Agent': self.ua.random
+            'Content-Type': 'application/json'
         }
     
     def _extract_workday_job_id(self, url: str) -> str:
@@ -63,19 +63,18 @@ class SerperFetcher:
         Returns:
             List of job dictionaries
         """
-        # Default dork for Workday GIS jobs (simplified - no operators that Serper rejects)
+        # Default dork for Workday GIS jobs (no quotes - Serper breaks with nested quotes)
         if not query:
-            query = 'site:myworkdayjobs.com "GIS Specialist"'
+            query = 'site:myworkdayjobs.com GIS Specialist'
         
         jobs = []
         
         try:
             logger.info(f"Searching Google via Serper: {query}")
             
-            # FIXED: Correct payload format for Serper API
+            # Minimal payload - Serper free tier rejects 'num' parameter
             payload = {
-                "q": query,
-                "num": 100
+                "q": query
             }
             
             # CRITICAL: Use json=payload (not data=) for automatic JSON serialization
@@ -244,8 +243,8 @@ class SerperFetcher:
         Returns:
             List of job dictionaries from discovered companies
         """
-        # Simplified query - Serper rejects complex operators
-        query = 'site:boards.greenhouse.io "GIS Specialist"'
+        # No quotes - Serper breaks with nested quotes in JSON payload
+        query = 'site:boards.greenhouse.io GIS Specialist'
         
         jobs = []
         
@@ -253,8 +252,7 @@ class SerperFetcher:
             logger.info(f"🔍 DISCOVERY MODE: Searching ALL Greenhouse companies...")
             
             payload = {
-                'q': query,
-                'num': 100,
+                'q': query
                 'gl': 'us',
                 'hl': 'en'
             }
@@ -320,8 +318,7 @@ class SerperFetcher:
             logger.info(f"🔍 DISCOVERY MODE: Searching ALL Lever companies...")
             
             payload = {
-                'q': query,
-                'num': 100,
+                'q': query
                 'gl': 'us',
                 'hl': 'en'
             }

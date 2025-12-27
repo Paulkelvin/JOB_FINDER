@@ -19,14 +19,13 @@ serper:
   # Get free API key at: https://serper.dev
   # Free tier: 2,500 searches/month
   
-  # Custom Google dorks - SIMPLIFIED (Serper doesn't support -, OR, after: operators reliably)
-  # Filter senior roles in code instead of search query
+  # Custom Google dorks - NO QUOTES (Serper breaks with nested quotes in JSON)
   # 77 JOB SOURCES - Maximum coverage!
   custom_dorks:
     # === WORKDAY (Engineering Firms) ===
-    - 'site:myworkdayjobs.com "GIS Specialist"'
-    - 'site:myworkdayjobs.com "GIS Analyst"'
-    - 'site:myworkdayjobs.com "Geospatial Analyst"'
+    - 'site:myworkdayjobs.com GIS Specialist'
+    - 'site:myworkdayjobs.com GIS Analyst'
+    - 'site:myworkdayjobs.com Geospatial Analyst'
     - 'site:aecom.wd1.myworkdayjobs.com GIS'
     - 'site:jacobs.wd1.myworkdayjobs.com GIS'
     - 'site:hdr.wd1.myworkdayjobs.com GIS'
@@ -37,17 +36,17 @@ serper:
     - 'site:burns-mcd.wd1.myworkdayjobs.com GIS'
     - 'site:trimble.wd1.myworkdayjobs.com GIS'
     - 'site:hexagon.wd5.myworkdayjobs.com GIS'
-    - 'site:precisely.wd1.myworkdayjobs.com "GIS Analyst"'
+    - 'site:precisely.wd1.myworkdayjobs.com GIS Analyst'
     
     # === LINKEDIN (100% FREE via Serper!) ===
-    - 'site:linkedin.com/jobs "GIS Specialist"'
-    - 'site:linkedin.com/jobs "GIS Analyst"'
-    - 'site:linkedin.com/jobs "Geospatial Analyst"'
-    - 'site:linkedin.com/jobs "Remote Sensing"'
+    - 'site:linkedin.com/jobs GIS Specialist'
+    - 'site:linkedin.com/jobs GIS Analyst'
+    - 'site:linkedin.com/jobs Geospatial Analyst'
+    - 'site:linkedin.com/jobs Remote Sensing'
     
     # === INDEED ===
-    - 'site:indeed.com "GIS Analyst"'
-    - 'site:indeed.com "GIS Specialist"'
+    - 'site:indeed.com GIS Analyst'
+    - 'site:indeed.com GIS Specialist'
     - 'site:indeed.com Geospatial'
     
     # === GLASSDOOR ===
@@ -55,11 +54,11 @@ serper:
     - 'site:glassdoor.com/job-listing Geospatial'
     
     # === ZIPRECRUITER ===
-    - 'site:ziprecruiter.com "GIS Analyst"'
+    - 'site:ziprecruiter.com GIS Analyst'
     - 'site:ziprecruiter.com Geospatial'
     
     # === MONSTER ===
-    - 'site:monster.com "GIS Analyst"'
+    - 'site:monster.com GIS Analyst'
     
     # === DICE (Tech Jobs) ===
     - 'site:dice.com GIS'
@@ -80,19 +79,19 @@ serper:
     - 'site:flexjobs.com GIS'
     
     # === GOVERNMENT ===
-    - 'site:governmentjobs.com "GIS Analyst"'
-    - 'site:usajobs.gov "GIS Specialist"'
+    - 'site:governmentjobs.com GIS Analyst'
+    - 'site:usajobs.gov GIS Specialist'
     - 'site:usajobs.gov Cartographer'
     
     # === UNIVERSITIES ===
     - 'site:higheredjobs.com GIS'
-    - 'site:edu "GIS Analyst"'
+    - 'site:edu GIS Analyst'
     
     # === NON-PROFIT & CONSERVATION ===
     - 'site:idealist.org GIS'
     - 'site:devex.com GIS'
     - 'site:conservation.org/careers GIS'
-    - 'site:tnc.org "GIS Analyst"'
+    - 'site:tnc.org GIS Analyst'
     
     # === NICHE GIS JOB BOARDS ===
     - 'site:gis-jobs.com Analyst'
@@ -118,7 +117,7 @@ serper:
     - 'site:deere.com/careers GIS'
     
     # === DISCOVERY MODE ===
-    - 'site:boards.greenhouse.io "GIS Specialist"'
+    - 'site:boards.greenhouse.io GIS Specialist'
     - 'site:jobs.lever.co GIS'
 
 # ATS (Applicant Tracking System) Configuration
