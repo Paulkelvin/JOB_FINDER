@@ -253,8 +253,6 @@ class SerperFetcher:
             
             payload = {
                 'q': query
-                'gl': 'us',
-                'hl': 'en'
             }
             
             response = requests.post(
@@ -319,8 +317,6 @@ class SerperFetcher:
             
             payload = {
                 'q': query
-                'gl': 'us',
-                'hl': 'en'
             }
             
             response = requests.post(
