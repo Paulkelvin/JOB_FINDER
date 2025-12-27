@@ -19,23 +19,24 @@ serper:
   # Get free API key at: https://serper.dev
   # Free tier: 2,500 searches/month
   
-  # Custom Google dorks (NO 'after:' date operators - Serper doesn't support them)
+  # Custom Google dorks - SIMPLIFIED (Serper doesn't support -, OR, after: operators reliably)
+  # Filter senior roles in code instead of search query
   # 77 JOB SOURCES - Maximum coverage!
   custom_dorks:
     # === WORKDAY (Engineering Firms) ===
-    - 'site:myworkdayjobs.com "GIS Specialist" OR "GIS Analyst"'
+    - 'site:myworkdayjobs.com "GIS Specialist"'
+    - 'site:myworkdayjobs.com "GIS Analyst"'
     - 'site:myworkdayjobs.com "Geospatial Analyst"'
-    - 'site:myworkdayjobs.com "Remote Sensing"'
-    - 'site:aecom.wd1.myworkdayjobs.com "GIS"'
-    - 'site:jacobs.wd1.myworkdayjobs.com "GIS"'
-    - 'site:hdr.wd1.myworkdayjobs.com "GIS"'
-    - 'site:wsp.wd3.myworkdayjobs.com "GIS"'
-    - 'site:stantec.wd1.myworkdayjobs.com "GIS"'
-    - 'site:tetratech.wd1.myworkdayjobs.com "GIS"'
-    - 'site:cdmsmith.wd1.myworkdayjobs.com "GIS"'
-    - 'site:burns-mcd.wd1.myworkdayjobs.com "GIS"'
-    - 'site:trimble.wd1.myworkdayjobs.com "GIS"'
-    - 'site:hexagon.wd5.myworkdayjobs.com "GIS" OR "Geospatial"'
+    - 'site:aecom.wd1.myworkdayjobs.com GIS'
+    - 'site:jacobs.wd1.myworkdayjobs.com GIS'
+    - 'site:hdr.wd1.myworkdayjobs.com GIS'
+    - 'site:wsp.wd3.myworkdayjobs.com GIS'
+    - 'site:stantec.wd1.myworkdayjobs.com GIS'
+    - 'site:tetratech.wd1.myworkdayjobs.com GIS'
+    - 'site:cdmsmith.wd1.myworkdayjobs.com GIS'
+    - 'site:burns-mcd.wd1.myworkdayjobs.com GIS'
+    - 'site:trimble.wd1.myworkdayjobs.com GIS'
+    - 'site:hexagon.wd5.myworkdayjobs.com GIS'
     - 'site:precisely.wd1.myworkdayjobs.com "GIS Analyst"'
     
     # === LINKEDIN (100% FREE via Serper!) ===
@@ -43,99 +44,82 @@ serper:
     - 'site:linkedin.com/jobs "GIS Analyst"'
     - 'site:linkedin.com/jobs "Geospatial Analyst"'
     - 'site:linkedin.com/jobs "Remote Sensing"'
-    - 'site:linkedin.com/jobs "GIS" "Easy Apply"'
     
     # === INDEED ===
     - 'site:indeed.com "GIS Analyst"'
     - 'site:indeed.com "GIS Specialist"'
-    - 'site:indeed.com "Geospatial"'
+    - 'site:indeed.com Geospatial'
     
     # === GLASSDOOR ===
-    - 'site:glassdoor.com/job-listing "GIS"'
-    - 'site:glassdoor.com/job-listing "Geospatial"'
+    - 'site:glassdoor.com/job-listing GIS'
+    - 'site:glassdoor.com/job-listing Geospatial'
     
     # === ZIPRECRUITER ===
     - 'site:ziprecruiter.com "GIS Analyst"'
-    - 'site:ziprecruiter.com "Geospatial"'
+    - 'site:ziprecruiter.com Geospatial'
     
     # === MONSTER ===
     - 'site:monster.com "GIS Analyst"'
-    - 'site:monster.com "Geospatial"'
     
     # === DICE (Tech Jobs) ===
-    - 'site:dice.com "GIS" OR "Geospatial"'
+    - 'site:dice.com GIS'
     
     # === CAREERBUILDER ===
-    - 'site:careerbuilder.com "GIS"'
+    - 'site:careerbuilder.com GIS'
     
-    # === FREELANCE & CONTRACT (Low competition, good rates!) ===
-    - 'site:upwork.com "GIS" OR "Geospatial"'
-    - 'site:upwork.com "ArcGIS" OR "QGIS"'
-    - 'site:freelancer.com "GIS"'
-    - 'site:guru.com "GIS" OR "Mapping"'
-    - 'site:fiverr.com "GIS" OR "ArcGIS"'
-    - 'site:toptal.com "GIS"'
+    # === FREELANCE & CONTRACT ===
+    - 'site:upwork.com GIS'
+    - 'site:upwork.com ArcGIS'
+    - 'site:freelancer.com GIS'
+    - 'site:guru.com GIS'
+    - 'site:fiverr.com GIS'
     
     # === REMOTE JOB BOARDS ===
-    - 'site:weworkremotely.com "GIS" OR "Geospatial"'
-    - 'site:remoteok.com "GIS"'
-    - 'site:flexjobs.com "GIS"'
-    - 'site:remote.co "GIS" OR "Geospatial"'
+    - 'site:weworkremotely.com GIS'
+    - 'site:remoteok.com GIS'
+    - 'site:flexjobs.com GIS'
     
-    # === GOVERNMENT (BEST for low competition) ===
+    # === GOVERNMENT ===
     - 'site:governmentjobs.com "GIS Analyst"'
-    - 'site:governmentjobs.com "Geospatial"'
-    - 'site:usajobs.gov "GIS Specialist" OR "GIS Analyst"'
-    - 'site:usajobs.gov "Geospatial" OR "Cartographer"'
-    - 'inurl:careers.gov "GIS"'
+    - 'site:usajobs.gov "GIS Specialist"'
+    - 'site:usajobs.gov Cartographer'
     
-    # === UNIVERSITIES (Research positions) ===
-    - 'site:higheredjobs.com "GIS" -faculty -professor'
-    - 'site:edu "GIS Analyst" OR "GIS Specialist" inurl:careers'
-    - 'site:edu "Geospatial" intitle:jobs'
+    # === UNIVERSITIES ===
+    - 'site:higheredjobs.com GIS'
+    - 'site:edu "GIS Analyst"'
     
     # === NON-PROFIT & CONSERVATION ===
-    - 'site:idealist.org "GIS" OR "Geospatial"'
-    - 'site:devex.com "GIS" OR "Mapping"'
-    - 'site:conservation.org/careers "GIS"'
+    - 'site:idealist.org GIS'
+    - 'site:devex.com GIS'
+    - 'site:conservation.org/careers GIS'
     - 'site:tnc.org "GIS Analyst"'
-    - 'site:worldwildlife.org/careers "GIS"'
-    - 'site:nrdc.org/careers "GIS"'
     
     # === NICHE GIS JOB BOARDS ===
-    - 'site:gis-jobs.com "Analyst" OR "Specialist"'
-    - 'site:gjc.org "GIS"'  # GIS Jobs Clearinghouse
-    - 'site:gisuser.com/jobs "GIS"'
+    - 'site:gis-jobs.com Analyst'
+    - 'site:gjc.org GIS'
     
-    # === REDDIT & COMMUNITY (Insider opportunities) ===
-    - 'site:reddit.com/r/gis "hiring" OR "job opening"'
-    - 'site:reddit.com/r/gis "[Hiring]"'
-    - 'site:reddit.com/r/geospatial "job"'
-    - 'site:news.ycombinator.com "GIS" OR "Geospatial" intitle:"Who is Hiring"'
+    # === REDDIT & COMMUNITY ===
+    - 'site:reddit.com/r/gis hiring'
+    - 'site:reddit.com/r/geospatial job'
     
     # === STARTUP JOB BOARDS ===
-    - 'site:angel.co/jobs "GIS" OR "Geospatial"'
-    - 'site:wellfound.com "GIS"'
+    - 'site:angel.co/jobs GIS'
+    - 'site:wellfound.com GIS'
     
     # === FEDERAL CONTRACTORS ===
-    - 'site:lockheedmartinjobs.com "GIS"'
-    - 'site:northropgrumman.com/careers "GIS"'
-    - 'site:boeing.com/careers "GIS"'
-    - 'site:gdit.com/careers "GIS"'
+    - 'site:lockheedmartinjobs.com GIS'
+    - 'site:northropgrumman.com/careers GIS'
     
     # === ENERGY & UTILITIES ===
-    - 'site:nexteraenergy.wd1.myworkdayjobs.com "GIS"'
-    - 'site:dukeenergy.wd1.myworkdayjobs.com "GIS"'
-    - 'site:bv.wd1.myworkdayjobs.com "GIS"'  # Black & Veatch
+    - 'site:nexteraenergy.wd1.myworkdayjobs.com GIS'
+    - 'site:dukeenergy.wd1.myworkdayjobs.com GIS'
     
     # === AGRICULTURE TECH ===
-    - 'site:deere.com/careers "GIS"'
-    - 'site:cnhindustrial.com "GIS"'
+    - 'site:deere.com/careers GIS'
     
-    # === DISCOVERY MODE (Finds unknown companies) ===
+    # === DISCOVERY MODE ===
     - 'site:boards.greenhouse.io "GIS Specialist"'
-    - 'site:boards.greenhouse.io "Geospatial"'
-    - 'site:jobs.lever.co "GIS Analyst"'
+    - 'site:jobs.lever.co GIS'
 
 # ATS (Applicant Tracking System) Configuration
 # Companies organized by platform to avoid 404 errors and speed up scanning

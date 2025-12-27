@@ -63,9 +63,9 @@ class SerperFetcher:
         Returns:
             List of job dictionaries
         """
-        # Default dork for Workday GIS jobs (no date operators to avoid 400 errors)
+        # Default dork for Workday GIS jobs (simplified - no operators that Serper rejects)
         if not query:
-            query = 'site:myworkdayjobs.com "GIS Specialist" OR "GIS Analyst" -senior -lead -manager'
+            query = 'site:myworkdayjobs.com "GIS Specialist"'
         
         jobs = []
         
@@ -244,8 +244,8 @@ class SerperFetcher:
         Returns:
             List of job dictionaries from discovered companies
         """
-        # NO 'after:' operator - Serper doesn't support it!
-        query = 'site:boards.greenhouse.io "GIS Specialist" OR "Geospatial Analyst" -senior'
+        # Simplified query - Serper rejects complex operators
+        query = 'site:boards.greenhouse.io "GIS Specialist"'
         
         jobs = []
         
@@ -311,8 +311,8 @@ class SerperFetcher:
         Returns:
             List of job dictionaries from discovered companies
         """
-        # NO 'after:' operator - Serper doesn't support it!
-        query = 'site:jobs.lever.co "GIS Analyst" OR "Geospatial" -senior'
+        # Simplified query - Serper rejects complex operators
+        query = 'site:jobs.lever.co GIS'
         
         jobs = []
         
