@@ -37,7 +37,29 @@ class JobFilter:
         'vp',
         'vice president',
         'executive',
-        'architect'  # Usually senior role
+        'architect',  # Usually senior role
+        # Sales/marketing roles (non-technical, lower quality for GIS professionals)
+        'sales',
+        'account executive',
+        'account manager',
+        'business development',
+        'marketing',
+        'solutions specialist',
+        'customer success',
+        # Field/manual labor roles
+        'field technician',
+        'surveyor',
+        'field crew',
+        'field data collector',
+        'field services',
+        # Temporary/intern roles
+        'intern',
+        'internship',
+        'co-op',
+        'temporary',
+        'temp ',
+        'contract',
+        'freelance'
     ]
     
     def __init__(self, custom_required: List[str] = None, custom_negative: List[str] = None):

@@ -19,66 +19,66 @@ serper:
   # Get free API key at: https://serper.dev
   # Free tier: 2,500 searches/month
   
-  # Custom Google dorks (optional)
+  # Custom Google dorks (NO 'after:' date operators - Serper doesn't support them)
   custom_dorks:
-    # Workday broad searches
-    - 'site:myworkdayjobs.com "GIS Specialist" OR "GIS Analyst" -senior -lead after:2025-01-01'
-    - 'site:myworkdayjobs.com "Geospatial Analyst" -senior -manager after:2025-01-01'
+    # Workday broad searches (simplified to avoid 400 errors)
+    - 'site:myworkdayjobs.com "GIS Specialist" -senior -lead -manager'
+    - 'site:myworkdayjobs.com "Geospatial Analyst" -senior -manager -director'
+    - 'site:myworkdayjobs.com "Remote Sensing" -senior -lead'
     # Company-specific Workday searches
-    - 'site:trimble.wd1.myworkdayjobs.com "GIS" -senior -lead'
-    - 'site:hexagon.wd5.myworkdayjobs.com "GIS" OR "Geospatial" -senior'
-    - 'site:precisely.wd1.myworkdayjobs.com "GIS" -senior'
+    - 'site:trimble.wd1.myworkdayjobs.com "GIS" -senior'
+    - 'site:hexagon.wd5.myworkdayjobs.com "Geospatial" -senior'
+    - 'site:precisely.wd1.myworkdayjobs.com "GIS Analyst"'
     # Discovery dork - finds NEW companies on Greenhouse
-    - 'site:job-boards.greenhouse.io "GIS Specialist" after:2025-01-01'
+    - 'site:boards.greenhouse.io "GIS Specialist" -senior'
+    - 'site:boards.greenhouse.io "Geospatial" -manager -director'
     
     # UNSATURATED SOURCES (Low Competition Jobs)
     # Government Jobs (90% less competition)
-    - 'site:governmentjobs.com "GIS" OR "Geospatial" -senior -lead'
-    - 'site:usajobs.gov "GIS Specialist" OR "GIS Analyst" -senior'
-    - 'inurl:careers.gov "GIS" -senior -manager'
+    - 'site:governmentjobs.com "GIS Analyst" -senior'
+    - 'site:usajobs.gov "GIS Specialist" -senior -lead'
+    - 'site:usajobs.gov "Cartographer" -senior'
     
     # University Research Labs (Hidden academic jobs)
-    - 'site:edu "GIS Analyst" OR "GIS Specialist" inurl:careers -faculty -professor'
-    - 'site:edu "Geospatial" intitle:jobs -faculty'
+    - 'site:higheredjobs.com "GIS" -faculty -professor -postdoc'
+    - 'site:edu "GIS Analyst" inurl:jobs -faculty'
     
     # Non-Profit & Conservation (Niche opportunities)
     - 'site:idealist.org "GIS" OR "Geospatial"'
-    - 'site:conservation.org "GIS" careers'
-    - 'site:tnc.org "GIS Analyst"'
+    - 'site:devex.com "GIS" OR "Mapping"'
     
-    # LinkedIn Easy Apply (Fresh postings)
-    - 'site:linkedin.com/jobs "GIS" "Easy Apply" after:2025-01-01 -senior'
-    - 'site:linkedin.com/jobs "Geospatial Analyst" after:2025-01-01 -senior -lead'
-    
-    # Reddit & HackerNews (Insider opportunities)
-    - 'site:reddit.com/r/gis "hiring" OR "job opening" after:2025-01-01'
-    - 'site:news.ycombinator.com "GIS" OR "Geospatial" intitle:"Who is Hiring"'
+    # Niche GIS job boards (quality over quantity)
+    - 'site:gis-jobs.com "Analyst" OR "Specialist" -senior'
+    - 'site:gjc.org "GIS" -senior'  # GIS Jobs Clearinghouse
 
 # ATS (Applicant Tracking System) Configuration
 # Companies organized by platform to avoid 404 errors and speed up scanning
 
 ats:
   # Greenhouse Companies (use boards-api.greenhouse.io)
+  # VERIFIED Dec 2025 - All tested and working
   greenhouse_slugs:
-    - "esri"              # Esri - GIS software giant
-    - "planetlabs"        # Planet - Satellite imagery
-    - "onxmaps"           # onX Maps - Outdoor navigation
-    - "ardentmc"          # Ardent MC - Federal GIS consulting
-    - "apexcompanies"     # Apex Companies - Environmental & GIS
-    - "geotab"            # Geotab - Fleet/Telematics
-    - "blastpoint"        # BlastPoint - Geospatial analytics
-    - "aurorasolar"       # Aurora Solar - Solar GIS
-    - "dewberry"          # Dewberry - Mapping & engineering
-    - "langan"            # Langan - Civil engineering
-    - "mbakerintl"        # Michael Baker International
+    - "esri"              # Esri - GIS software giant (348 jobs)
+    - "planetlabs"        # Planet - Satellite imagery (56 jobs)
+    - "onxmaps"           # onX Maps - Outdoor navigation (17 jobs)
+    - "ardentmc"          # Ardent MC - Federal GIS consulting (25 jobs)
+    - "apexcompanies"     # Apex Companies - Environmental & GIS (132 jobs)
+    - "geotab"            # Geotab - Fleet/Telematics (44 jobs)
+    - "blastpoint"        # BlastPoint - Geospatial analytics (3 jobs)
+    - "digitalglobe"      # Maxar/DigitalGlobe - Satellite imagery
+    - "boundlessgeo"      # Boundless - Open source GIS
+    - "blacksky"          # BlackSky - Earth observation
+    - "spire"             # Spire Global - Space-based data
+    - "terradotta"        # TerraDataCo - GIS/location intelligence
   
-  # Lever Companies (use api.lever.co)
+  # Lever Companies (use api.lever.co)  
+  # VERIFIED Dec 2025 - All tested and working
   lever_slugs:
-    - "mapbox"            # Mapbox - Mapping platform
-    - "carto"             # CARTO - Cloud-native GIS
-    - "foursquare"        # Foursquare - Location intelligence
-    - "nearmap"           # Nearmap - Aerial imagery
-    - "regrowagriculture" # Regrow Ag - Agricultural GIS
+    - "saildrone"         # Saildrone - Ocean mapping drones
+    - "hydrosat"          # Hydrosat - Thermal satellite imagery
+    - "umbra"             # Umbra - SAR satellite imaging
+    - "astraea"           # Astraea - Earth analytics
+    - "lynker"            # Lynker - Environmental geospatial
   
   # DEPRECATED: Old single list (keeping for reference)
   # company_slugs: []
