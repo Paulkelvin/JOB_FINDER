@@ -30,6 +30,29 @@ serper:
     - 'site:precisely.wd1.myworkdayjobs.com "GIS" -senior'
     # Discovery dork - finds NEW companies on Greenhouse
     - 'site:job-boards.greenhouse.io "GIS Specialist" after:2025-01-01'
+    
+    # UNSATURATED SOURCES (Low Competition Jobs)
+    # Government Jobs (90% less competition)
+    - 'site:governmentjobs.com "GIS" OR "Geospatial" -senior -lead'
+    - 'site:usajobs.gov "GIS Specialist" OR "GIS Analyst" -senior'
+    - 'inurl:careers.gov "GIS" -senior -manager'
+    
+    # University Research Labs (Hidden academic jobs)
+    - 'site:edu "GIS Analyst" OR "GIS Specialist" inurl:careers -faculty -professor'
+    - 'site:edu "Geospatial" intitle:jobs -faculty'
+    
+    # Non-Profit & Conservation (Niche opportunities)
+    - 'site:idealist.org "GIS" OR "Geospatial"'
+    - 'site:conservation.org "GIS" careers'
+    - 'site:tnc.org "GIS Analyst"'
+    
+    # LinkedIn Easy Apply (Fresh postings)
+    - 'site:linkedin.com/jobs "GIS" "Easy Apply" after:2025-01-01 -senior'
+    - 'site:linkedin.com/jobs "Geospatial Analyst" after:2025-01-01 -senior -lead'
+    
+    # Reddit & HackerNews (Insider opportunities)
+    - 'site:reddit.com/r/gis "hiring" OR "job opening" after:2025-01-01'
+    - 'site:news.ycombinator.com "GIS" OR "Geospatial" intitle:"Who is Hiring"'
 
 # ATS (Applicant Tracking System) Configuration
 # ONLY add companies that use Greenhouse or Lever

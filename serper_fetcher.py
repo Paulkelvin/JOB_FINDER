@@ -98,6 +98,9 @@ class SerperFetcher:
                 # Extract company name from URL or title
                 company = self._extract_company_from_workday_url(url)
                 
+                # Get freshness and competition data
+                freshness_data = self._estimate_freshness(url, snippet)
+                
                 jobs.append({
                     'job_id': self._extract_workday_job_id(url),
                     'title': title,
@@ -105,7 +108,11 @@ class SerperFetcher:
                     'url': url,
                     'location': self._extract_location(snippet),
                     'source': 'Serper/Google',
-                    'snippet': snippet
+                    'snippet': snippet,
+                    'category': self._categorize_job(title, snippet),
+                    'freshness': freshness_data['freshness'],
+                    'priority': freshness_data['priority'],
+                    'competition': self._estimate_competition(url, snippet)
                 })
             
             logger.info(f"Found {len(jobs)} jobs from Serper search")
@@ -153,6 +160,69 @@ class SerperFetcher:
                 return match.group(0)
         
         return "Location Not Specified"
+    
+    def _categorize_job(self, title: str, snippet: str) -> str:
+        """Categorize job by niche area"""
+        text = (title + ' ' + snippet).lower()
+        
+        # Categorization keywords
+        if any(kw in text for kw in ['remote sensing', 'satellite', 'imagery', 'aerial', 'drone']):
+            return '🛰️ Remote Sensing'
+        elif any(kw in text for kw in ['web', 'mapping', 'javascript', 'leaflet', 'mapbox']):
+            return '🗺️ Web Mapping'
+        elif any(kw in text for kw in ['government', 'federal', 'state', 'municipal', 'county']):
+            return '🏛️ Government'
+        elif any(kw in text for kw in ['environmental', 'conservation', 'wildlife', 'ecology']):
+            return '🌲 Environmental'
+        elif any(kw in text for kw in ['engineering', 'civil', 'infrastructure', 'transportation']):
+            return '🏗️ Engineering'
+        elif any(kw in text for kw in ['agriculture', 'farming', 'precision ag', 'crop']):
+            return '🌾 Agriculture'
+        elif any(kw in text for kw in ['research', 'university', 'academic', 'science']):
+            return '🎓 Research'
+        else:
+            return '📊 General GIS'
+    
+    def _estimate_freshness(self, url: str, snippet: str) -> dict:
+        """Estimate how fresh/recent the job posting is"""
+        text = snippet.lower()
+        
+        # Look for time indicators in snippet
+        if any(word in text for word in ['today', 'just posted', 'new']):
+            return {'freshness': '🔥 Very Fresh', 'hours': 24, 'priority': 'HIGH'}
+        elif any(word in text for word in ['yesterday', '1 day']):
+            return {'freshness': '🟢 Fresh', 'hours': 48, 'priority': 'HIGH'}
+        elif any(word in text for word in ['2 days', '3 days', 'this week']):
+            return {'freshness': '🟡 Recent', 'hours': 168, 'priority': 'MEDIUM'}
+        else:
+            return {'freshness': '🔵 Standard', 'hours': 720, 'priority': 'NORMAL'}
+    
+    def _estimate_competition(self, url: str, snippet: str) -> str:
+        """Estimate competition level based on source"""
+        url_lower = url.lower()
+        
+        # Government/edu/non-profit = low competition
+        if any(domain in url_lower for domain in ['governmentjobs.com', 'usajobs.gov', '.edu', 'idealist.org']):
+            return '🟢 Low Competition (~10-30 applicants)'
+        
+        # Reddit/HN = very low competition
+        elif any(domain in url_lower for domain in ['reddit.com', 'news.ycombinator.com']):
+            return '🟢 Very Low (~5-15 applicants)'
+        
+        # Greenhouse/Lever = medium competition
+        elif any(domain in url_lower for domain in ['greenhouse.io', 'lever.co']):
+            return '🟡 Medium (~50-100 applicants)'
+        
+        # LinkedIn = high competition
+        elif 'linkedin.com' in url_lower:
+            return '🟠 Higher (~100-300 applicants)'
+        
+        # Workday = medium-high
+        elif 'myworkdayjobs.com' in url_lower:
+            return '🟡 Medium-High (~75-150 applicants)'
+        
+        else:
+            return '🔵 Unknown'
     
     def search_custom_dork(self, dork: str) -> List[Dict]:
         """
@@ -207,6 +277,8 @@ class SerperFetcher:
                 company = self._extract_company_from_greenhouse_url(url)
                 
                 if company:
+                    freshness_data = self._estimate_freshness(url, snippet)
+                    
                     jobs.append({
                         'job_id': f"discovered_greenhouse_{hash(url)}",
                         'title': title,
@@ -214,7 +286,11 @@ class SerperFetcher:
                         'url': url,
                         'location': self._extract_location(snippet),
                         'source': 'Discovery/Greenhouse',
-                        'snippet': snippet
+                        'snippet': snippet,
+                        'category': self._categorize_job(title, snippet),
+                        'freshness': freshness_data['freshness'],
+                        'priority': freshness_data['priority'],
+                        'competition': self._estimate_competition(url, snippet)
                     })
             
             logger.info(f"🎯 Discovered {len(jobs)} jobs from NEW Greenhouse companies")
@@ -267,6 +343,8 @@ class SerperFetcher:
                 company = self._extract_company_from_lever_url(url)
                 
                 if company:
+                    freshness_data = self._estimate_freshness(url, snippet)
+                    
                     jobs.append({
                         'job_id': f"discovered_lever_{hash(url)}",
                         'title': title,
@@ -274,7 +352,11 @@ class SerperFetcher:
                         'url': url,
                         'location': self._extract_location(snippet),
                         'source': 'Discovery/Lever',
-                        'snippet': snippet
+                        'snippet': snippet,
+                        'category': self._categorize_job(title, snippet),
+                        'freshness': freshness_data['freshness'],
+                        'priority': freshness_data['priority'],
+                        'competition': self._estimate_competition(url, snippet)
                     })
             
             logger.info(f"🎯 Discovered {len(jobs)} jobs from NEW Lever companies")

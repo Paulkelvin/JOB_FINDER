@@ -55,8 +55,13 @@ class DiscordNotifier:
         # Check if this is a discovered company (new find)
         is_discovery = source.startswith('Discovery/')
         
+        # Build title with freshness indicator
+        title_prefix = '🆕 NEW COMPANY! ' if is_discovery else ''
+        if job.get('freshness', '').startswith('🔥'):
+            title_prefix = '🔥 HOT! ' + title_prefix
+        
         embed = {
-            'title': ('🆕 NEW COMPANY! ' if is_discovery else '') + job.get('title', 'Unknown Title'),
+            'title': title_prefix + job.get('title', 'Unknown Title'),
             'url': job.get('url', ''),
             'color': color,
             'fields': [
@@ -81,6 +86,30 @@ class DiscordNotifier:
             },
             'timestamp': datetime.utcnow().isoformat()
         }
+        
+        # Add category if available
+        if job.get('category'):
+            embed['fields'].append({
+                'name': '📂 Category',
+                'value': job.get('category'),
+                'inline': True
+            })
+        
+        # Add freshness if available
+        if job.get('freshness'):
+            embed['fields'].append({
+                'name': '⏰ Freshness',
+                'value': job.get('freshness'),
+                'inline': True
+            })
+        
+        # Add competition estimate if available
+        if job.get('competition'):
+            embed['fields'].append({
+                'name': '👥 Competition',
+                'value': job.get('competition'),
+                'inline': True
+            })
         
         # Add snippet if available (from Google results)
         if job.get('snippet'):

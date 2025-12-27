@@ -211,10 +211,14 @@ class GeoJobSentinel:
             logger.warning("Discord webhook not configured, skipping notifications")
             return
         
-        logger.info(f"Sending {len(jobs)} job notifications to Discord")
+        # Sort jobs by priority (HIGH priority = fresh jobs first)
+        priority_order = {'HIGH': 0, 'MEDIUM': 1, 'NORMAL': 2, 'LOW': 3}
+        sorted_jobs = sorted(jobs, key=lambda x: priority_order.get(x.get('priority', 'NORMAL'), 2))
+        
+        logger.info(f"Sending {len(sorted_jobs)} job notifications to Discord (sorted by freshness)")
         
         try:
-            sent = self.discord.send_batch_notification(jobs)
+            sent = self.discord.send_batch_notification(sorted_jobs)
             logger.info(f"Successfully sent {sent} notifications")
         except Exception as e:
             logger.error(f"Error sending notifications: {e}", exc_info=True)

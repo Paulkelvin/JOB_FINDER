@@ -45,6 +45,12 @@ jobs:
               - 'site:hexagon.wd5.myworkdayjobs.com "GIS" OR "Geospatial" -senior'
               - 'site:precisely.wd1.myworkdayjobs.com "GIS" -senior'
               - 'site:job-boards.greenhouse.io "GIS Specialist" after:2025-01-01'
+              - 'site:governmentjobs.com "GIS" OR "Geospatial" -senior -lead'
+              - 'site:usajobs.gov "GIS Specialist" OR "GIS Analyst" -senior'
+              - 'site:edu "GIS Analyst" OR "GIS Specialist" inurl:careers -faculty -professor'
+              - 'site:idealist.org "GIS" OR "Geospatial"'
+              - 'site:linkedin.com/jobs "GIS" "Easy Apply" after:2025-01-01 -senior'
+              - 'site:reddit.com/r/gis "hiring" OR "job opening" after:2025-01-01'
           
           ats:
             company_slugs:
