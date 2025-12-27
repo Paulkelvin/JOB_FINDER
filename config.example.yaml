@@ -1,0 +1,88 @@
+# GeoJob-Sentinel Configuration File
+# Copy this to config.yaml and fill in your details
+
+# Database Configuration
+database:
+  path: "geojob_sentinel.db"  # SQLite database path
+
+# Discord Webhook Configuration
+discord:
+  webhook_url: "YOUR_DISCORD_WEBHOOK_URL_HERE"
+  # To get a webhook URL:
+  # 1. Go to your Discord server
+  # 2. Server Settings → Integrations → Webhooks
+  # 3. Create a new webhook and copy the URL
+
+# Serper.dev Google Search API
+serper:
+  api_key: "YOUR_SERPER_API_KEY_HERE"
+  # Get free API key at: https://serper.dev
+  # Free tier: 2,500 searches/month
+  
+  # Custom Google dorks (optional)
+  custom_dorks:
+    - 'site:myworkdayjobs.com "GIS Specialist" OR "GIS Analyst" -senior -lead after:2025-01-01'
+    - 'site:myworkdayjobs.com "Geospatial Analyst" -senior -manager after:2025-01-01'
+    - 'site:greenhouse.io "GIS" OR "Geospatial" -senior -lead'
+
+# ATS (Applicant Tracking System) Configuration
+# Add company slugs for Greenhouse/Lever job boards
+ats:
+  company_slugs:
+    # Example companies (replace with your targets)
+    - "esri"              # Esri (GIS software)
+    - "planet"            # Planet Labs
+    - "mapbox"            # Mapbox
+    - "carto"             # CARTO
+    - "nearmap"           # Nearmap
+    - "geotab"            # Geotab
+    - "precislyinc"       # Precisely
+    - "trimble"           # Trimble
+    - "hexagon"           # Hexagon Geospatial
+    - "orbital-insight"   # Orbital Insight
+    
+    # Engineering/Infrastructure firms (often have GIS roles)
+    # Note: These may use Workday instead - check their careers page
+    # - "aecom"
+    # - "jacobs"
+    # - "hdr"
+    # - "wsp"
+    # - "stantec"
+    
+    # Add more companies here
+    # Find slugs by visiting: https://boards.greenhouse.io/COMPANY_NAME
+    # or https://jobs.lever.co/COMPANY_NAME
+
+# Job Filtering Configuration
+filters:
+  # Required keywords (at least one must be present in job title)
+  required_keywords:
+    - "gis"
+    - "geospatial"
+    - "spatial"
+    - "mapping"
+    # Add more if needed
+  
+  # Negative keywords (any of these will exclude the job)
+  negative_keywords:
+    - "senior"
+    - "sr."
+    - "sr "
+    - "iii"
+    - "iv"
+    - "lead"
+    - "manager"
+    - "director"
+    - "principal"
+    - "chief"
+    - "head of"
+    - "vp"
+    - "vice president"
+    - "executive"
+    - "architect"
+    # Add more if needed
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "geojob_sentinel.log"

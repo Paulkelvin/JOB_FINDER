@@ -1,0 +1,110 @@
+name: GeoJob-Sentinel Auto Scan
+
+on:
+  schedule:
+    # Run every 6 hours (adjust as needed)
+    - cron: '0 */6 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  scan-jobs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Create config.yaml from secrets
+        run: |
+          cat > config.yaml << EOF
+          database:
+            path: "geojob_sentinel.db"
+          
+          discord:
+            webhook_url: "${{ secrets.DISCORD_WEBHOOK_URL }}"
+          
+          serper:
+            api_key: "${{ secrets.SERPER_API_KEY }}"
+            custom_dorks:
+              - 'site:myworkdayjobs.com "GIS Specialist" OR "GIS Analyst" -senior -lead after:2025-01-01'
+              - 'site:myworkdayjobs.com "Geospatial Analyst" -senior -manager after:2025-01-01'
+          
+          ats:
+            company_slugs:
+              - "esri"
+              - "planet"
+              - "mapbox"
+              - "carto"
+              - "nearmap"
+              - "geotab"
+              - "precislyinc"
+              - "trimble"
+              - "hexagon"
+              - "orbital-insight"
+          
+          filters:
+            required_keywords:
+              - "gis"
+              - "geospatial"
+              - "spatial"
+              - "mapping"
+            negative_keywords:
+              - "senior"
+              - "sr."
+              - "sr "
+              - "iii"
+              - "iv"
+              - "lead"
+              - "manager"
+              - "director"
+              - "principal"
+              - "chief"
+              - "head of"
+              - "vp"
+              - "vice president"
+              - "executive"
+              - "architect"
+          
+          logging:
+            level: "INFO"
+            file: "geojob_sentinel.log"
+          EOF
+      
+      - name: Restore database from cache
+        uses: actions/cache@v4
+        with:
+          path: geojob_sentinel.db
+          key: geojob-db-${{ github.run_number }}
+          restore-keys: |
+            geojob-db-
+      
+      - name: Run GeoJob-Sentinel
+        run: python geojob_sentinel.py
+      
+      - name: Upload log file
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-logs
+          path: geojob_sentinel.log
+          retention-days: 7
+      
+      - name: Save database to cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: geojob_sentinel.db
+          key: geojob-db-${{ github.run_number }}
