@@ -120,6 +120,26 @@ class GeoJobSentinel:
             for dork in custom_dorks:
                 jobs.extend(fetcher.search_custom_dork(dork))
             
+            # Discovery Mode: Find NEW companies
+            if self.config.get('discovery', {}).get('enabled', False):
+                logger.info("🔍 Discovery Mode ENABLED - Searching for new companies...")
+                
+                # Search Greenhouse platform
+                if self.config.get('discovery', {}).get('search_greenhouse', True):
+                    greenhouse_discoveries = fetcher.discover_greenhouse_companies()
+                    jobs.extend(greenhouse_discoveries)
+                    if greenhouse_discoveries:
+                        logger.info(f"✨ Found {len(greenhouse_discoveries)} jobs from NEW Greenhouse companies")
+                
+                # Search Lever platform
+                if self.config.get('discovery', {}).get('search_lever', True):
+                    lever_discoveries = fetcher.discover_lever_companies()
+                    jobs.extend(lever_discoveries)
+                    if lever_discoveries:
+                        logger.info(f"✨ Found {len(lever_discoveries)} jobs from NEW Lever companies")
+            else:
+                logger.info("Discovery Mode disabled in config")
+            
             return jobs
             
         except Exception as e:

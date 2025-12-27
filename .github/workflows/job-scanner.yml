@@ -55,6 +55,11 @@ jobs:
               - "hexagon"
               - "orbital-insight"
           
+          discovery:
+            enabled: true
+            search_greenhouse: true
+            search_lever: true
+          
           filters:
             required_keywords:
               - "gis"

@@ -82,6 +82,14 @@ filters:
     - "architect"
     # Add more if needed
 
+# Discovery Mode Configuration (EXPERIMENTAL)
+# Finds NEW companies you don't know about by searching entire platforms
+discovery:
+  enabled: true  # Set to false to disable discovery
+  search_greenhouse: true  # Search all of Greenhouse for GIS jobs
+  search_lever: true       # Search all of Lever for GIS jobs
+  # Discovery uses your Serper API quota, so disable if you want to conserve searches
+
 # Logging Configuration
 logging:
   level: "INFO"  # DEBUG, INFO, WARNING, ERROR

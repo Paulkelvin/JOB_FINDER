@@ -25,7 +25,9 @@ class DiscordNotifier:
         'Greenhouse': 3066993,   # Dark Green
         'Lever': 10181046,       # Purple
         'Serper/Google': 15844367,  # Gold
-        'Workday': 3426654       # Teal
+        'Workday': 3426654,      # Teal
+        'Discovery/Greenhouse': 16734296,  # Bright Orange (NEW!)
+        'Discovery/Lever': 16734296        # Bright Orange (NEW!)
     }
     
     def __init__(self, webhook_url: str):
@@ -50,14 +52,17 @@ class DiscordNotifier:
         source = job.get('source', 'Unknown')
         color = self.SOURCE_COLORS.get(source, self.COLOR_INFO)
         
+        # Check if this is a discovered company (new find)
+        is_discovery = source.startswith('Discovery/')
+        
         embed = {
-            'title': job.get('title', 'Unknown Title'),
+            'title': ('🆕 NEW COMPANY! ' if is_discovery else '') + job.get('title', 'Unknown Title'),
             'url': job.get('url', ''),
             'color': color,
             'fields': [
                 {
                     'name': '🏢 Company',
-                    'value': job.get('company', 'Unknown'),
+                    'value': job.get('company', 'Unknown') + (' 🌟 (Discovered!)' if is_discovery else ''),
                     'inline': True
                 },
                 {
@@ -72,7 +77,7 @@ class DiscordNotifier:
                 }
             ],
             'footer': {
-                'text': 'GeoJob-Sentinel'
+                'text': 'GeoJob-Sentinel' + (' - Discovery Mode' if is_discovery else '')
             },
             'timestamp': datetime.utcnow().isoformat()
         }

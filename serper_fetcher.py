@@ -165,3 +165,159 @@ class SerperFetcher:
             List of job dictionaries
         """
         return self.search_workday_jobs(query=dork)
+    
+    def discover_greenhouse_companies(self) -> List[Dict]:
+        """
+        Discovery Mode: Find NEW companies on Greenhouse that aren't in your config
+        Searches the entire Greenhouse platform for GIS jobs
+        
+        Returns:
+            List of job dictionaries from discovered companies
+        """
+        query = 'site:boards.greenhouse.io "GIS Specialist" OR "GIS Analyst" OR "Geospatial" after:2025-01-01'
+        
+        jobs = []
+        
+        try:
+            logger.info(f"🔍 DISCOVERY MODE: Searching ALL Greenhouse companies...")
+            
+            payload = {
+                'q': query,
+                'num': 100,
+                'gl': 'us',
+                'hl': 'en'
+            }
+            
+            response = requests.post(
+                self.base_url,
+                json=payload,
+                headers=self._get_headers(),
+                timeout=30
+            )
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            for result in data.get('organic', []):
+                title = result.get('title', '')
+                url = result.get('link', '')
+                snippet = result.get('snippet', '')
+                
+                # Extract company from Greenhouse URL
+                company = self._extract_company_from_greenhouse_url(url)
+                
+                if company:
+                    jobs.append({
+                        'job_id': f"discovered_greenhouse_{hash(url)}",
+                        'title': title,
+                        'company': company,
+                        'url': url,
+                        'location': self._extract_location(snippet),
+                        'source': 'Discovery/Greenhouse',
+                        'snippet': snippet
+                    })
+            
+            logger.info(f"🎯 Discovered {len(jobs)} jobs from NEW Greenhouse companies")
+            
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Error in Greenhouse discovery: {e}")
+        except (ValueError, KeyError) as e:
+            logger.error(f"Error parsing Greenhouse discovery response: {e}")
+        
+        return jobs
+    
+    def discover_lever_companies(self) -> List[Dict]:
+        """
+        Discovery Mode: Find NEW companies on Lever that aren't in your config
+        Searches the entire Lever platform for GIS jobs
+        
+        Returns:
+            List of job dictionaries from discovered companies
+        """
+        query = 'site:jobs.lever.co "GIS" OR "Geospatial" OR "Spatial Analyst" after:2025-01-01'
+        
+        jobs = []
+        
+        try:
+            logger.info(f"🔍 DISCOVERY MODE: Searching ALL Lever companies...")
+            
+            payload = {
+                'q': query,
+                'num': 100,
+                'gl': 'us',
+                'hl': 'en'
+            }
+            
+            response = requests.post(
+                self.base_url,
+                json=payload,
+                headers=self._get_headers(),
+                timeout=30
+            )
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            for result in data.get('organic', []):
+                title = result.get('title', '')
+                url = result.get('link', '')
+                snippet = result.get('snippet', '')
+                
+                # Extract company from Lever URL
+                company = self._extract_company_from_lever_url(url)
+                
+                if company:
+                    jobs.append({
+                        'job_id': f"discovered_lever_{hash(url)}",
+                        'title': title,
+                        'company': company,
+                        'url': url,
+                        'location': self._extract_location(snippet),
+                        'source': 'Discovery/Lever',
+                        'snippet': snippet
+                    })
+            
+            logger.info(f"🎯 Discovered {len(jobs)} jobs from NEW Lever companies")
+            
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Error in Lever discovery: {e}")
+        except (ValueError, KeyError) as e:
+            logger.error(f"Error parsing Lever discovery response: {e}")
+        
+        return jobs
+    
+    def _extract_company_from_greenhouse_url(self, url: str) -> str:
+        """
+        Extract company name from Greenhouse URL
+        Example: https://boards.greenhouse.io/esri/jobs/123 → Esri
+        """
+        try:
+            import re
+            # Match pattern: boards.greenhouse.io/COMPANY_NAME/
+            match = re.search(r'boards\.greenhouse\.io/([^/]+)', url)
+            if match:
+                company_slug = match.group(1)
+                # Clean up slug to readable name
+                return company_slug.replace('-', ' ').title()
+            return "Unknown Company"
+        except Exception as e:
+            logger.warning(f"Error extracting company from Greenhouse URL {url}: {e}")
+            return "Unknown Company"
+    
+    def _extract_company_from_lever_url(self, url: str) -> str:
+        """
+        Extract company name from Lever URL
+        Example: https://jobs.lever.co/mapbox/123 → Mapbox
+        """
+        try:
+            import re
+            # Match pattern: jobs.lever.co/COMPANY_NAME/
+            match = re.search(r'jobs\.lever\.co/([^/]+)', url)
+            if match:
+                company_slug = match.group(1)
+                # Clean up slug to readable name
+                return company_slug.replace('-', ' ').title()
+            return "Unknown Company"
+        except Exception as e:
+            logger.warning(f"Error extracting company from Lever URL {url}: {e}")
+            return "Unknown Company"
