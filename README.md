@@ -64,6 +64,9 @@ notepad config.yaml
 
 **Required Configuration:**
 
+**🔑 Two Ways to Provide API Keys:**
+
+**Option A: For LOCAL runs** (running `python geojob_sentinel.py` on your computer):
 1. **Get Serper.dev API Key**:
    - Visit https://serper.dev
    - Sign up (free, no credit card)
@@ -76,10 +79,16 @@ notepad config.yaml
    - Copy the Webhook URL
    - Paste into `config.yaml` under `discord.webhook_url`
 
-3. **Add Target Companies**:
-   - Edit the `ats.company_slugs` list
-   - Find company slugs by visiting their careers page
-   - Example: `https://boards.greenhouse.io/esri` → slug is `esri`
+**Option B: For GITHUB ACTIONS** (cloud automation):
+1. **Add GitHub Secrets**:
+   - Go to your repo: https://github.com/YOUR_USERNAME/JOB_FINDER/settings/secrets/actions
+   - Click "New repository secret"
+   - Add `SERPER_API_KEY` = your Serper API key
+   - Add `DISCORD_WEBHOOK_URL` = your Discord webhook URL
+   
+2. **No need to edit config.yaml!** GitHub Actions reads from secrets automatically.
+
+**💡 Best Practice:** Use GitHub Secrets for cloud runs, leave placeholders in `config.yaml` (never commit real keys to Git!)
 
 ### 3. Run the Application
 

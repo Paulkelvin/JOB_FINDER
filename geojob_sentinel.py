@@ -6,6 +6,7 @@ A robust CLI application to find niche GIS Specialist I/II and Analyst roles
 
 import argparse
 import logging
+import os
 import sys
 from pathlib import Path
 from typing import Dict, List
@@ -48,7 +49,8 @@ class GeoJobSentinel:
         )
         
         # Initialize Discord notifier if configured
-        webhook_url = self.config.get('discord', {}).get('webhook_url')
+        # Priority: 1) Environment variable (GitHub Actions), 2) Config file (local)
+        webhook_url = os.getenv('DISCORD_WEBHOOK_URL') or self.config.get('discord', {}).get('webhook_url')
         self.discord = DiscordNotifier(webhook_url) if webhook_url else None
         
         # Statistics tracking
@@ -107,9 +109,10 @@ class GeoJobSentinel:
     
     def fetch_serper_jobs(self) -> List[Dict]:
         """Fetch jobs from Google via Serper.dev"""
-        api_key = self.config.get('serper', {}).get('api_key')
+        # Priority: 1) Environment variable (GitHub Actions), 2) Config file (local)
+        api_key = os.getenv('SERPER_API_KEY') or self.config.get('serper', {}).get('api_key')
         
-        if not api_key:
+        if not api_key or api_key == 'YOUR_SERPER_API_KEY_HERE':
             logger.warning("No Serper API key configured, skipping Google search")
             return []
         
