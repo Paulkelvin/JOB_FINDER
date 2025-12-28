@@ -116,6 +116,173 @@ serper:
     # === AGRICULTURE TECH ===
     - 'site:deere.com/careers GIS'
     
+    # === UNITED KINGDOM (40+ SOURCES) ===
+    # UK job boards
+    - 'site:reed.co.uk GIS'
+    - 'site:totaljobs.com GIS'
+    - 'site:cwjobs.co.uk GIS'
+    - 'site:indeed.co.uk GIS Analyst'
+    - 'site:indeed.co.uk Geospatial'
+    - 'site:linkedin.com/jobs UK GIS'
+    - 'site:linkedin.com/jobs London GIS'
+    - 'site:glassdoor.co.uk GIS'
+    - 'site:cv-library.co.uk GIS'
+    - 'site:monster.co.uk GIS'
+    - 'site:jobs.ac.uk GIS'
+    - 'site:technojobs.co.uk GIS'
+    
+    # UK location searches
+    - 'GIS Analyst UK'
+    - 'GIS Specialist London'
+    - 'Geospatial Analyst Manchester'
+    - 'GIS jobs Birmingham'
+    - 'GIS Edinburgh'
+    - 'GIS Bristol'
+    
+    # UK government & agencies
+    - 'site:civilservicejobs.service.gov.uk GIS'
+    - 'site:ordnancesurvey.co.uk/careers GIS'
+    - 'site:metoffice.gov.uk GIS'
+    - 'site:naturalengland.org.uk GIS'
+    - 'site:environmentagency.gov.uk GIS'
+    
+    # UK companies
+    - 'site:os.uk/careers GIS'
+    - 'site:1spatial.com/careers GIS'
+    - 'site:geospatialinsight.com GIS'
+    - 'site:bluesky-world.com GIS'
+    
+    # === AUSTRALIA (35+ SOURCES) ===
+    # Australian job boards
+    - 'site:seek.com.au GIS'
+    - 'site:indeed.com.au GIS Analyst'
+    - 'site:indeed.com.au Geospatial'
+    - 'site:linkedin.com/jobs Australia GIS'
+    - 'site:linkedin.com/jobs Sydney GIS'
+    - 'site:careerone.com.au GIS'
+    - 'site:jora.com/au GIS'
+    - 'site:ethicaljobs.com.au GIS'
+    
+    # Australian location searches
+    - 'GIS Analyst Australia'
+    - 'GIS Specialist Sydney'
+    - 'Geospatial Analyst Melbourne'
+    - 'GIS jobs Brisbane'
+    - 'GIS Perth'
+    - 'GIS Canberra'
+    - 'GIS Adelaide'
+    
+    # Australian government
+    - 'site:apsjobs.gov.au GIS'
+    - 'site:ga.gov.au GIS'
+    - 'site:bom.gov.au GIS'
+    - 'site:csiro.au GIS'
+    
+    # Australian companies
+    - 'site:aaranet.com.au GIS'
+    - 'site:ngis.com.au GIS'
+    - 'site:spatial-vision.com.au GIS'
+    - 'site:geoscape.com.au GIS'
+    
+    # === CANADA (40+ SOURCES) ===
+    # Canadian job boards
+    - 'site:indeed.ca GIS Analyst'
+    - 'site:indeed.ca Geospatial'
+    - 'site:workopolis.com GIS'
+    - 'site:linkedin.com/jobs Canada GIS'
+    - 'site:linkedin.com/jobs Toronto GIS'
+    - 'site:glassdoor.ca GIS'
+    - 'site:monster.ca GIS'
+    - 'site:jobbank.gc.ca GIS'
+    - 'site:eluta.ca GIS'
+    
+    # Canadian location searches
+    - 'GIS Analyst Canada'
+    - 'GIS Specialist Toronto'
+    - 'Geospatial Analyst Vancouver'
+    - 'GIS jobs Montreal'
+    - 'GIS Calgary'
+    - 'GIS Ottawa'
+    - 'GIS Edmonton'
+    
+    # Canadian government
+    - 'site:jobs-emplois.gc.ca GIS'
+    - 'site:nrcan.gc.ca GIS'
+    - 'site:esri.ca/careers GIS'
+    - 'site:canada.ca GIS'
+    
+    # Canadian companies
+    - 'site:teranet.ca GIS'
+    - 'site:dmti.ca GIS'
+    - 'site:geomatics.com GIS'
+    
+    # === DUBAI & UAE (35+ SOURCES) ===
+    # UAE job boards
+    - 'site:bayt.com GIS'
+    - 'site:bayt.com Geospatial'
+    - 'site:naukrigulf.com GIS'
+    - 'site:dubizzle.com/jobs GIS'
+    - 'site:gulftalent.com GIS'
+    - 'site:linkedin.com/jobs Dubai GIS'
+    - 'site:linkedin.com/jobs UAE GIS'
+    - 'site:glassdoor.ae GIS'
+    - 'site:indeed.ae GIS'
+    
+    # UAE location searches
+    - 'GIS Analyst Dubai'
+    - 'GIS Specialist Abu Dhabi'
+    - 'Geospatial UAE'
+    - 'GIS jobs Dubai'
+    - 'Remote Sensing Dubai'
+    - 'Cartographer UAE'
+    
+    # UAE companies & government
+    - 'site:dubailand.gov.ae GIS'
+    - 'site:dm.gov.ae GIS'
+    - 'site:dewa.gov.ae GIS'
+    - 'site:rta.ae GIS'
+    - 'site:adm.gov.ae GIS'
+    - 'site:emiratesgeosociety.org GIS'
+    
+    # === EUROPE (30+ SOURCES) ===
+    # European job boards
+    - 'site:eurojobs.com GIS'
+    - 'site:jobsinnetwork.com GIS'
+    - 'site:linkedin.com/jobs Germany GIS'
+    - 'site:linkedin.com/jobs Netherlands GIS'
+    - 'site:linkedin.com/jobs France GIS'
+    - 'site:stepstone.de GIS'
+    - 'site:indeed.de GIS'
+    - 'site:indeed.fr GIS'
+    - 'site:indeed.nl GIS'
+    - 'site:indeed.ie GIS'
+    
+    # European cities
+    - 'GIS Analyst Berlin'
+    - 'GIS Amsterdam'
+    - 'GIS Paris'
+    - 'GIS Brussels'
+    - 'GIS Dublin'
+    - 'Geospatial Copenhagen'
+    
+    # European agencies
+    - 'site:eea.europa.eu GIS'
+    - 'site:esa.int GIS'
+    - 'site:europeanjobs.com GIS'
+    
+    # === ASIA & MIDDLE EAST (25+ SOURCES) ===
+    - 'site:linkedin.com/jobs Singapore GIS'
+    - 'site:linkedin.com/jobs Hong Kong GIS'
+    - 'site:jobsdb.com GIS'
+    - 'site:jobstreet.com GIS'
+    - 'site:indeed.sg GIS'
+    - 'GIS Analyst Singapore'
+    - 'GIS Qatar'
+    - 'GIS Saudi Arabia'
+    - 'GIS Kuwait'
+    - 'GIS Bahrain'
+    - 'GIS Oman'
+    
     # === NIGERIAN JOB BOARDS (35+ SOURCES) ===
     # Major Nigerian platforms
     - 'site:jobberman.com GIS'
