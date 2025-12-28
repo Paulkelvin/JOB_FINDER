@@ -116,6 +116,66 @@ serper:
     # === AGRICULTURE TECH ===
     - 'site:deere.com/careers GIS'
     
+    # === NIGERIAN JOB BOARDS (35+ SOURCES) ===
+    # Major Nigerian platforms
+    - 'site:jobberman.com GIS'
+    - 'site:jobberman.com Geospatial'
+    - 'site:jobberman.com GIS Analyst'
+    - 'site:myjobmag.com GIS'
+    - 'site:myjobmag.com Geospatial'
+    - 'site:hotnigerianjobs.com GIS'
+    - 'site:ngcareers.com GIS'
+    - 'site:careerng.com GIS'
+    - 'site:fuzu.com/ng GIS'
+    - 'site:indeed.com.ng GIS'
+    - 'site:linkedin.com/jobs Nigeria GIS'
+    - 'site:glassdoor.com Lagos GIS'
+    
+    # Nigerian location-specific searches
+    - 'GIS Analyst Nigeria'
+    - 'GIS Specialist Lagos'
+    - 'Geospatial Analyst Abuja'
+    - 'Remote Sensing Nigeria'
+    - 'GIS jobs Nigeria'
+    - 'Cartographer Nigeria'
+    
+    # International NGOs in Nigeria
+    - 'site:undp.org/careers Nigeria GIS'
+    - 'site:unicef.org/careers Nigeria GIS'
+    - 'site:who.int/careers Nigeria GIS'
+    - 'site:wfp.org Nigeria GIS'
+    - 'site:redcross.org Nigeria GIS'
+    - 'site:oxfam.org Nigeria GIS'
+    - 'site:savethechildren.net Nigeria GIS'
+    - 'site:msf.org Nigeria GIS'
+    
+    # Oil & Gas companies in Nigeria
+    - 'site:shell.com.ng GIS'
+    - 'site:chevron.com Nigeria GIS'
+    - 'site:exxonmobil.com Nigeria GIS'
+    - 'site:totalenergies.com Nigeria GIS'
+    - 'site:nnpcgroup.com GIS'
+    - 'site:seplat.com GIS'
+    
+    # Nigerian tech companies
+    - 'site:andela.com GIS'
+    - 'site:flutterwave.com GIS'
+    - 'site:paystack.com GIS'
+    - 'site:interswitch.com GIS'
+    - 'site:konga.com GIS'
+    - 'site:jumia.com.ng GIS'
+    
+    # Nigerian government & public sector
+    - 'site:gov.ng GIS'
+    - 'site:nasrda.gov.ng GIS'
+    - 'site:nimet.gov.ng GIS'
+    - 'site:fmenv.gov.ng GIS'
+    
+    # Environmental & Survey companies in Nigeria
+    - 'site:fugro.com Nigeria GIS'
+    - 'site:tetratech.com Nigeria GIS'
+    - 'site:aecom.com Nigeria GIS'
+    
     # === DISCOVERY MODE ===
     - 'site:boards.greenhouse.io GIS Specialist'
     - 'site:jobs.lever.co GIS'
